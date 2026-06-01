@@ -72,15 +72,28 @@ cd F2_js_bars_with_ci/         # or any other Quantlet folder
 python F2_js_bars_with_ci.py   # or open the .ipynb in Jupyter
 ```
 
-The output lands in that Quantlet's `results/` folder. Every Quantlet is
-independent: no shared imports, no cross-Quantlet path dependencies.
+The output lands directly in the Quantlet folder root, alongside the script:
+figure Quantlets re-emit `{name}.pdf` and `{name}.png`; table Quantlets
+re-emit `{name}.csv` and `{name}.tex`. Every Quantlet is independent: no
+shared imports, no cross-Quantlet path dependencies, no `results/`
+subfolder.
 
 ## License
 
-MIT --- see `LICENSE`.
+This collection is released under the MIT License --- a permissive open
+source license that allows commercial and academic re-use, modification,
+and redistribution provided the copyright notice is preserved. The full
+license text is in [`LICENSE`](LICENSE). Copyright (c) 2026 Delia Diaconu
+and Daniel Traian Pele.
 
 ## Citation
 
-Diaconu, D., & Pele, D. T. (2026). *Testing SHAP Stability under Distribution
-Shift in Graph-Enhanced Fraud Detection.* Expert Systems with Applications
-(submitted).
+If you use this collection or the framework it implements, please cite:
+
+> Diaconu, D., & Pele, D. T. (2026). *Testing SHAP Stability under
+> Distribution Shift in Graph-Enhanced Fraud Detection.* Expert Systems
+> with Applications (submitted).
+
+A BibTeX entry will be added to this README when the manuscript is
+accepted; in the interim, repository metadata is recorded in
+[`Metainfo.txt`](Metainfo.txt) and [`Quantlet.yaml`](Quantlet.yaml).
