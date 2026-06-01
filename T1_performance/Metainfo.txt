@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T1_performance.csv
 
-Output:          T1_performance.csv
+Output:          T1_performance.csv, T1_performance.pdf, T1_performance.png

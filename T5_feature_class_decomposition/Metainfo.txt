@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T5_feature_class_decomposition.csv
 
-Output:          T5_feature_class_decomposition.csv
+Output:          T5_feature_class_decomposition.csv, T5_feature_class_decomposition.pdf, T5_feature_class_decomposition.png

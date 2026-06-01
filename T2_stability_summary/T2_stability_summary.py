@@ -4,7 +4,7 @@ Quantlet T2_stability_summary
 Algorithm 1 (block-bootstrap) primary stability comparisons -- mean JS, mean delta_k, BH-flagged fraction, CI-sep fraction.
 
 Datafile(s): T2_stability_summary.csv
-Output:      T2_stability_summary.csv
+Output:      T2_stability_summary.csv, T2_stability_summary.pdf, T2_stability_summary.png
 
 Run from inside this folder:
     python T2_stability_summary.py
@@ -50,17 +50,59 @@ def legend_below(ax, y_offset=-0.18, ncol=None, fontsize=9):
               ncol=ncol, frameon=False, fontsize=fontsize)
 
 
+
 import shutil
 from pathlib import Path
+import matplotlib.pyplot as plt
+import pandas as pd
 
-INPUT  = "T2_stability_summary.csv"
-OUTPUT = "T2_stability_summary.csv"
+INPUT      = "T2_stability_summary.csv"
+OUTPUT_CSV = "T2_stability_summary.csv"
+OUTPUT_PDF = "T2_stability_summary.pdf"
+OUTPUT_PNG = "T2_stability_summary.png"
 
-# Some tables (T6) carry section markers and uneven row widths, so render
-# the file content directly rather than forcing pandas.read_csv.
+# 1. Echo the CSV content (handles T6's multi-section format too).
 text = Path(INPUT).read_text(encoding="utf-8")
 print(text)
 
-if Path(INPUT).resolve() != Path(OUTPUT).resolve():
-    shutil.copyfile(INPUT, OUTPUT)
-print(f"wrote: {OUTPUT}")
+# 2. Re-emit the canonical CSV (no-op when input==output).
+if Path(INPUT).resolve() != Path(OUTPUT_CSV).resolve():
+    shutil.copyfile(INPUT, OUTPUT_CSV)
+
+# 3. Render the table as a matplotlib figure -> PDF + PNG.
+#    Robust to multi-section CSVs: pandas.read_csv with comment="#" and
+#    skip_blank_lines drops section headers; if the file still has mixed
+#    schemas we fall back to a monospace text rendering.
+set_rcparams()
+try:
+    df = pd.read_csv(INPUT, comment="#", skip_blank_lines=True)
+    fig, ax = plt.subplots(figsize=(min(1.2 + 1.6 * len(df.columns), 14),
+                                     0.45 + 0.32 * (len(df) + 1)))
+    ax.axis("off")
+    tbl = ax.table(cellText=df.round(4).astype(str).values,
+                   colLabels=df.columns.tolist(),
+                   cellLoc="center", colLoc="center", loc="center")
+    tbl.auto_set_font_size(False); tbl.set_fontsize(9)
+    tbl.scale(1.0, 1.25)
+    for k, c in tbl.get_celld().items():
+        c.set_edgecolor(PALETTE["light"])
+        if k[0] == 0:
+            c.set_facecolor(PALETTE["main_blue"]); c.set_text_props(color="white", weight="bold")
+    fig.tight_layout()
+    fig.savefig(OUTPUT_PDF, transparent=True)
+    fig.savefig(OUTPUT_PNG, transparent=True, dpi=300)
+    plt.close(fig)
+except Exception as exc:
+    # Fallback: render the raw text as a monospace figure (covers T6).
+    lines = text.splitlines()
+    fig, ax = plt.subplots(figsize=(11, 0.25 * (len(lines) + 2)))
+    ax.axis("off")
+    ax.text(0.0, 1.0, text, family="monospace", fontsize=8,
+            va="top", ha="left", transform=ax.transAxes)
+    fig.tight_layout()
+    fig.savefig(OUTPUT_PDF, transparent=True)
+    fig.savefig(OUTPUT_PNG, transparent=True, dpi=300)
+    plt.close(fig)
+    print(f"[fallback render: {exc.__class__.__name__}: {exc}]")
+
+print(f"wrote: {OUTPUT_CSV}, {OUTPUT_PDF}, {OUTPUT_PNG}")

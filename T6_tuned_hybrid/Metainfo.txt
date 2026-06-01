@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T6_tuned_hybrid.csv
 
-Output:          T6_tuned_hybrid.csv
+Output:          T6_tuned_hybrid.csv, T6_tuned_hybrid.pdf, T6_tuned_hybrid.png

@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T8_elliptic_stability.csv
 
-Output:          T8_elliptic_stability.csv
+Output:          T8_elliptic_stability.csv, T8_elliptic_stability.pdf, T8_elliptic_stability.png
