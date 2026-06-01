@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T2_stability_summary.csv
 
-Output:          T2_stability_summary.csv, T2_stability_summary.pdf, T2_stability_summary.png
+Output:          T2_stability_summary.csv, T2_stability_summary.tex

@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T2b_cross_config.csv
 
-Output:          T2b_cross_config.csv, T2b_cross_config.pdf, T2b_cross_config.png
+Output:          T2b_cross_config.csv, T2b_cross_config.tex

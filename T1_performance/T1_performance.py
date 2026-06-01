@@ -4,7 +4,7 @@ Quantlet T1_performance
 AUC, PR-AUC, Brier, ECE, DeLong z across all 18 (config, split) cells.
 
 Datafile(s): T1_performance.csv
-Output:      T1_performance.csv, T1_performance.pdf, T1_performance.png
+Output:      T1_performance.csv, T1_performance.tex
 
 Run from inside this folder:
     python T1_performance.py
@@ -53,15 +53,14 @@ def legend_below(ax, y_offset=-0.18, ncol=None, fontsize=9):
 
 import shutil
 from pathlib import Path
-import matplotlib.pyplot as plt
+import io
 import pandas as pd
 
 INPUT      = "T1_performance.csv"
 OUTPUT_CSV = "T1_performance.csv"
-OUTPUT_PDF = "T1_performance.pdf"
-OUTPUT_PNG = "T1_performance.png"
+OUTPUT_TEX = "T1_performance.tex"
 
-# 1. Echo the CSV content (handles T6's multi-section format too).
+# 1. Echo the CSV content (handles T6's multi-section format).
 text = Path(INPUT).read_text(encoding="utf-8")
 print(text)
 
@@ -69,40 +68,31 @@ print(text)
 if Path(INPUT).resolve() != Path(OUTPUT_CSV).resolve():
     shutil.copyfile(INPUT, OUTPUT_CSV)
 
-# 3. Render the table as a matplotlib figure -> PDF + PNG.
-#    Robust to multi-section CSVs: pandas.read_csv with comment="#" and
-#    skip_blank_lines drops section headers; if the file still has mixed
-#    schemas we fall back to a monospace text rendering.
-set_rcparams()
-try:
-    df = pd.read_csv(INPUT, comment="#", skip_blank_lines=True)
-    fig, ax = plt.subplots(figsize=(min(1.2 + 1.6 * len(df.columns), 14),
-                                     0.45 + 0.32 * (len(df) + 1)))
-    ax.axis("off")
-    tbl = ax.table(cellText=df.round(4).astype(str).values,
-                   colLabels=df.columns.tolist(),
-                   cellLoc="center", colLoc="center", loc="center")
-    tbl.auto_set_font_size(False); tbl.set_fontsize(9)
-    tbl.scale(1.0, 1.25)
-    for k, c in tbl.get_celld().items():
-        c.set_edgecolor(PALETTE["light"])
-        if k[0] == 0:
-            c.set_facecolor(PALETTE["main_blue"]); c.set_text_props(color="white", weight="bold")
-    fig.tight_layout()
-    fig.savefig(OUTPUT_PDF, transparent=True)
-    fig.savefig(OUTPUT_PNG, transparent=True, dpi=300)
-    plt.close(fig)
-except Exception as exc:
-    # Fallback: render the raw text as a monospace figure (covers T6).
-    lines = text.splitlines()
-    fig, ax = plt.subplots(figsize=(11, 0.25 * (len(lines) + 2)))
-    ax.axis("off")
-    ax.text(0.0, 1.0, text, family="monospace", fontsize=8,
-            va="top", ha="left", transform=ax.transAxes)
-    fig.tight_layout()
-    fig.savefig(OUTPUT_PDF, transparent=True)
-    fig.savefig(OUTPUT_PNG, transparent=True, dpi=300)
-    plt.close(fig)
-    print(f"[fallback render: {exc.__class__.__name__}: {exc}]")
+# 3. Re-emit the bundled LaTeX rendering. Split on blank lines and "# header"
+#    markers so multi-section CSVs (e.g., T6) render as multiple tabulars.
+NL = chr(10)
+sections, current_header, current_lines = [], None, []
+for raw in text.splitlines():
+    if raw.startswith("#"):
+        if current_lines: sections.append((current_header, current_lines)); current_lines = []
+        current_header = raw.lstrip("#").strip(); continue
+    if raw.strip() == "":
+        if current_lines: sections.append((current_header, current_lines)); current_lines = []
+        continue
+    current_lines.append(raw)
+if current_lines: sections.append((current_header, current_lines))
 
-print(f"wrote: {OUTPUT_CSV}, {OUTPUT_PDF}, {OUTPUT_PNG}")
+out_parts = []
+for hdr, lines in sections:
+    if hdr: out_parts.append(f"% --- {hdr} ---")
+    try:
+        df = pd.read_csv(io.StringIO(NL.join(lines)))
+        out_parts.append(df.to_latex(index=False, escape=True, float_format="%.4f"))
+    except Exception as e:
+        out_parts.append(f"% (section could not be parsed as tabular: {e})")
+        for line in lines:
+            out_parts.append("% " + line)
+    out_parts.append("")
+Path(OUTPUT_TEX).write_text(NL.join(out_parts).rstrip() + NL, encoding="utf-8")
+
+print(f"wrote: {OUTPUT_CSV}, {OUTPUT_TEX}")

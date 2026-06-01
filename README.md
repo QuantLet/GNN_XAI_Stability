@@ -35,8 +35,10 @@ without shared infrastructure:
   {QuantletName}.py        runnable Python script (helpers inlined)
   {QuantletName}.ipynb     equivalent Jupyter notebook
   Metainfo.txt             QuantLet metadata
-  {QuantletName}.pdf       output figure (or {QuantletName}.csv for table Quantlets)
-  {QuantletName}.png       PNG mirror (figures only)
+  {QuantletName}.pdf       figure PDF (figure Quantlets F*)
+  {QuantletName}.png       figure PNG (figure Quantlets F*)
+  {QuantletName}.csv       table data (table Quantlets T*)
+  {QuantletName}.tex       LaTeX tabular ready to \input{} (table Quantlets T*)
   <input parquet / CSV files needed by the .py>
 ```
 

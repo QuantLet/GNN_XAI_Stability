@@ -14,4 +14,4 @@ Submitted:       2026-06-01
 
 Datafile:        T3_robustness_controls.csv
 
-Output:          T3_robustness_controls.csv, T3_robustness_controls.pdf, T3_robustness_controls.png
+Output:          T3_robustness_controls.csv, T3_robustness_controls.tex
