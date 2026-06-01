@@ -1,0 +1,17 @@
+Name of Quantlet: F7_reliability_curves
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Reliability (calibration) curves for tabular vs hybrid under the temporal split; ECE annotations.
+
+Keywords:        reliability diagram, ECE, calibration, temporal shift
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        calibration_xgb_tab_temporal.parquet, calibration_xgb_sage_l1_temporal.parquet, calibration_catb_tab_temporal.parquet, calibration_catb_sage_l1_temporal.parquet
+
+Output:          F7_reliability_curves.pdf

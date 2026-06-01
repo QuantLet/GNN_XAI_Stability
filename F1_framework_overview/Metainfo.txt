@@ -1,0 +1,17 @@
+Name of Quantlet: F1_framework_overview
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Framework schematic: tabular + GNN -> hybrid -> SHAP on two splits -> JS test.
+
+Keywords:        framework, schematic, GraphSAGE, SHAP, Jensen-Shannon
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        (none -- standalone)
+
+Output:          F1_framework_overview.pdf

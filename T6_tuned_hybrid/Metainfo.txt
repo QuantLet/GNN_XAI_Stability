@@ -1,0 +1,17 @@
+Name of Quantlet: T6_tuned_hybrid
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Hyperparameter-tuned xgb_sage_l1_tuned via Optuna TPE (25 trials). Recovers 68% of pinned hybrid's temporal-AUC gap.
+
+Keywords:        Optuna, hyperparameter tuning, robustness check
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        T6_tuned_hybrid.csv
+
+Output:          T6_tuned_hybrid.csv

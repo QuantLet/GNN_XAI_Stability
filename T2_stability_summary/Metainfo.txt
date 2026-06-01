@@ -1,0 +1,17 @@
+Name of Quantlet: T2_stability_summary
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Algorithm 1 (block-bootstrap) primary stability comparisons -- mean JS, mean delta_k, BH-flagged fraction, CI-sep fraction.
+
+Keywords:        Algorithm 1, block bootstrap, stability, JS divergence, BH-FDR
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        T2_stability_summary.csv
+
+Output:          T2_stability_summary.csv

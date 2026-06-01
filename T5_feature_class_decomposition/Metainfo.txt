@@ -1,0 +1,17 @@
+Name of Quantlet: T5_feature_class_decomposition
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Per-feature-class decomposition: entity-related (33) vs non-entity (453). XGBoost ratio 2.50x; CatBoost ratio 0.91x.
+
+Keywords:        feature class, entity, signal effect, cross-learner asymmetry
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        T5_feature_class_decomposition.csv
+
+Output:          T5_feature_class_decomposition.csv

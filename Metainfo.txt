@@ -1,0 +1,34 @@
+Name of Quantlet: GNN_XAI_Stability
+
+Published in: Expert Systems with Applications (submitted)
+
+Description: Testing SHAP Stability under Distribution Shift in Graph-Enhanced
+             Fraud Detection. Implements a per-feature Jensen-Shannon
+             explanation-stability framework with block-bootstrap confidence
+             intervals, a paired one-sided block-permutation test, and
+             Benjamini-Hochberg FDR adjustment across features. Decomposes
+             the observed stability gain into a regularization component
+             (also present across XGBoost column-augmentation controls) and
+             a residual component consistent with graph-structural
+             information. Validated on IEEE-CIS Fraud Detection with
+             heterogeneous GraphSAGE embeddings and replicated on the
+             Elliptic Bitcoin transaction dataset.
+
+Keywords:    XAI, SHAP, attribution stability, distribution shift,
+             Jensen-Shannon divergence, GraphSAGE, fraud detection, IEEE-CIS,
+             Elliptic, block bootstrap, permutation test, BH-FDR,
+             regularization vs signal
+
+See also:    Diaconu and Pele 2026, XAI in Financial Fraud Detection
+
+Author:      Delia Diaconu, Daniel Traian Pele
+
+Submitted:   2026-06-01
+
+Datafile:    IEEE-CIS Fraud Detection (Kaggle, public): train_transaction.csv,
+             train_identity.csv. Elliptic Bitcoin Dataset (Kaggle, public):
+             elliptic_txs_features.csv, elliptic_txs_classes.csv,
+             elliptic_txs_edgelist.csv.
+
+Output:      results/tables/T1-T8, results/figures/F1-F10,
+             stability/*.parquet

@@ -1,0 +1,17 @@
+Name of Quantlet: F9_layer_ablation
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Layer ablation: per-feature stability gain delta_k under L1 vs L2 SAGE embeddings.
+
+Keywords:        layer ablation, L1 vs L2, SAGE
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-01
+
+Datafile:        stability_xgb_tab_vs_xgb_sage_l1_block_time.parquet, stability_xgb_tab_vs_xgb_sage_l2_block_time.parquet
+
+Output:          F9_layer_ablation.pdf

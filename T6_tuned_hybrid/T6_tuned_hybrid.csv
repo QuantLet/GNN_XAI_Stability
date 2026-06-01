@@ -1,0 +1,13 @@
+# provenance
+search_space,n_trials,objective,best_params,best_objective_AUC
+"n_estimators in {500,1000,1500,2000}; max_depth in {6,8,10,12}; learning_rate log-uniform [0.01,0.1]; subsample in {0.7,0.8,0.9,1.0}; colsample_bytree in {0.7,0.8,0.9,1.0}",25,temporal-split validation AUC,"{""n_estimators"": 2000, ""max_depth"": 10, ""learning_rate"": 0.013149611537652834, ""subsample"": 0.7, ""colsample_bytree"": 0.7}",0.9205702353697666
+
+# metrics
+config,split,auc,pr_auc,brier,ece
+xgb_sage_l1_tuned,random,0.9683632845969732,0.8223635892193749,0.012894404120743275,0.006483754429956245
+xgb_sage_l1_tuned,temporal,0.9205702353697666,0.572332030502069,0.021060636267066002,0.006145501079857041
+
+# delong
+comparison,split,auc_base,auc_chal,auc_diff,z,p_two_sided
+xgb_sage_l1_tuned vs xgb_tab,random,0.9765800490645007,0.9683632845969733,-0.008216764467527393,13.64183574473239,0.0
+xgb_sage_l1_tuned vs xgb_tab,temporal,0.922696106451725,0.9205702353697667,-0.002125871081958275,2.4453283487307877,0.014472031947908803
