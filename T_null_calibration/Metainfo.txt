@@ -1,0 +1,35 @@
+Name of Quantlet: T_null_calibration
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Null-resampling size check for Algorithm 1. Trains a
+                 second copy of xgb_tab under a different XGBoost
+                 random_state (seed 43, vs the project-wide 42), holds
+                 all other inputs (data, train/validation indices,
+                 5,000-row SHAP subsample, daily-block scheme,
+                 hyperparameters) fixed, then applies the diagnostic
+                 to the (xgb_tab, xgb_tab_seedB) pair under H0. Both
+                 the daily-block and card1-cluster bootstraps flag
+                 ~35% of features at nominal alpha = 0.05, well above
+                 alpha, so the procedure is anti-conservative under
+                 this operational null. The manuscript therefore
+                 reads Algorithm 1 as a stability diagnostic against
+                 this empirical null baseline rather than as a
+                 calibrated significance test.
+
+Keywords:        null calibration, size check, anti-conservative,
+                 empirical baseline, diagnostic, permutation,
+                 block bootstrap, SHAP stability
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection;
+                 manuscript Appendix on null-resampling size check
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-02
+
+Datafile:        T_null_calibration.csv (results of the size check;
+                 reproduced by scripts/run_null_calibration.py in the
+                 main pipeline)
+
+Output:          T_null_calibration.csv

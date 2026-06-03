@@ -1,0 +1,41 @@
+Name of Quantlet: T_covmatched_control
+
+Published in:    Expert Systems with Applications (submitted)
+
+Description:     Covariance-matched embedding control:
+                 xgb_covmatched_emb is drawn from N(0, Sigma_hat) with
+                 Sigma_hat the empirical 64x64 covariance of the real
+                 layer-one GraphSAGE embedding (per split). Unlike the
+                 diagonal-scale random control (matched variance only),
+                 this control reproduces the full second-order
+                 covariance structure of the real embedding while
+                 carrying no graph signal. Reports two diagnostic
+                 results: (i) xgb_tab vs xgb_covmatched_emb (left
+                 columns of Table 3) and (ii) the cross-pair test
+                 xgb_covmatched_emb vs xgb_sage_l1 (T2b). On XGBoost
+                 the covariance-matched control reproduces a LARGER
+                 mean stability gain than the real xgb_sage_l1
+                 (mean delta = -0.0460 vs -0.0302), and the T2b
+                 flagged fraction is 33.3% --- below the ~35%
+                 null-resampling baseline. The headline gain is
+                 therefore attributable to column augmentation plus
+                 matched embedding covariance; no graph-information
+                 channel beyond covariance is detectable by this
+                 diagnostic.
+
+Keywords:        covariance-matched control, negative control,
+                 graph-structure null, embedding covariance,
+                 column augmentation, SHAP stability, decomposition
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection;
+                 manuscript Section 5.2 / Table 3
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-02
+
+Datafile:        T_covmatched_control.csv (results of the two pairwise
+                 diagnostics; reproduced by
+                 scripts/run_covmatched_control.py in the main pipeline)
+
+Output:          T_covmatched_control.csv

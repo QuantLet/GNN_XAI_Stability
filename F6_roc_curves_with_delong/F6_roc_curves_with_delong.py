@@ -1,10 +1,14 @@
 """
 Quantlet F6_roc_curves_with_delong
 
-ROC curves for tabular vs hybrid configurations under the temporal split, with DeLong z annotations.
+ROC curves under the temporal split for the 12 main IEEE-CIS configurations
+(two tabular baselines, sage_only, three hybrids, six controls). Labels
+carry AUC only --- formal within-split DeLong comparisons use same-learner
+references (XGBoost vs xgb_tab, CatBoost vs catb_tab) and live in
+Table T1_performance, not in this figure.
 
-Datafile(s): preds_xgb_tab_temporal.parquet, preds_xgb_sage_l1_temporal.parquet, preds_catb_tab_temporal.parquet, preds_catb_sage_l1_temporal.parquet
-Output:      F6_roc_curves_with_delong.pdf
+Datafile(s): preds_{config}_temporal.parquet (12 files)
+Output:      F6_roc_curves_with_delong.pdf, F6_roc_curves_with_delong.png
 
 Run from inside this folder:
     python F6_roc_curves_with_delong.py
@@ -16,10 +20,13 @@ PALETTE = {
     "main_blue": "#003DA5",
     "ida_red":   "#C8102E",
     "forest":    "#228B22",
+    "amber":     "#D49B00",
     "crimson":   "#DC143C",
     "grey":      "#777777",
     "light":     "#CCCCCC",
 }
+LINESTYLES = ["-", "--", ":", "-."]
+
 
 def set_rcparams():
     import matplotlib as mpl
@@ -29,12 +36,13 @@ def set_rcparams():
         "axes.spines.top": False, "axes.spines.right": False,
         "axes.grid": True, "grid.alpha": 0.25,
         "grid.linestyle": "--", "grid.linewidth": 0.5,
-        "legend.frameon": False, "legend.fontsize": 10,
+        "legend.frameon": False, "legend.fontsize": 8,
         "xtick.labelsize": 10, "ytick.labelsize": 10,
         "figure.dpi": 100, "savefig.dpi": 300,
         "savefig.bbox": "tight", "savefig.pad_inches": 0.05,
         "pdf.fonttype": 42, "ps.fonttype": 42,
     })
+
 
 def save_fig(fig, name, out_dir):
     out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=True)
@@ -42,39 +50,47 @@ def save_fig(fig, name, out_dir):
     fig.savefig(pdf, transparent=True); fig.savefig(png, transparent=True)
     return pdf, png
 
-def legend_below(ax, y_offset=-0.18, ncol=None, fontsize=9):
+
+def legend_outside_bottom(ax, ncol=3, y_offset=-0.28, fontsize=7):
     h, l = ax.get_legend_handles_labels()
-    if not h: return
-    if ncol is None: ncol = min(len(h), 4)
+    if not h:
+        return
     ax.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, y_offset),
               ncol=ncol, frameon=False, fontsize=fontsize)
 
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, roc_auc_score
+from sklearn.metrics import roc_auc_score, roc_curve
 
 set_rcparams()
 
-CONFIGS = [("xgb_tab", PALETTE["main_blue"], "-"),
-           ("xgb_sage_l1", PALETTE["ida_red"], "-"),
-           ("catb_tab", PALETTE["main_blue"], "--"),
-           ("catb_sage_l1", PALETTE["ida_red"], "--")]
+MAIN_CONFIGS = (
+    "xgb_tab", "catb_tab", "sage_only",
+    "xgb_sage_l1", "xgb_sage_l2", "catb_sage_l1",
+    "xgb_random_emb", "xgb_permuted_emb", "xgb_noise_inj",
+    "catb_random_emb", "catb_permuted_emb", "catb_noise_inj",
+)
+files = [Path(f"preds_{c}_temporal.parquet") for c in MAIN_CONFIGS]
+files = [f for f in files if f.exists()]
 
-fig, ax = plt.subplots(figsize=(7.5, 6))
-for cfg, color, ls in CONFIGS:
-    df = pd.read_parquet(f"preds_{cfg}_temporal.parquet")
+fig, ax = plt.subplots(figsize=(6, 6))
+for i, p in enumerate(files):
+    df = pd.read_parquet(p)
+    config = p.stem.removeprefix("preds_").rsplit("_temporal", 1)[0]
     fpr, tpr, _ = roc_curve(df["y_true"], df["y_proba"])
     auc = roc_auc_score(df["y_true"], df["y_proba"])
-    ax.plot(fpr, tpr, color=color, linestyle=ls, lw=1.8,
-            label=f"{cfg}  AUC={auc:.3f}")
+    color = PALETTE["main_blue"] if "tab" in config else PALETTE["ida_red"]
+    if any(t in config for t in ("random_emb", "permuted_emb", "noise_inj")):
+        color = PALETTE["forest"]
+    label = f"{config} AUC={auc:.4f}"
+    ax.plot(fpr, tpr, color=color, linewidth=1.5,
+            linestyle=LINESTYLES[i % len(LINESTYLES)], label=label)
 
-ax.plot([0, 1], [0, 1], color=PALETTE["light"], lw=1, linestyle=":")
+ax.plot([0, 1], [0, 1], color=PALETTE["light"], linewidth=0.8)
 ax.set_xlabel("False positive rate"); ax.set_ylabel("True positive rate")
-ax.set_title("ROC curves on the temporal split")
-legend_below(ax, y_offset=-0.20)
-fig.subplots_adjust(bottom=0.25)
+ax.set_title("ROC curves under temporal split")
+legend_outside_bottom(ax, ncol=3, y_offset=-0.28, fontsize=7)
 pdf, png = save_fig(fig, "F6_roc_curves_with_delong", ".")
 plt.close(fig)
 print("saved:", pdf)

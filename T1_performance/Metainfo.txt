@@ -2,15 +2,27 @@ Name of Quantlet: T1_performance
 
 Published in:    Expert Systems with Applications (submitted)
 
-Description:     AUC, PR-AUC, Brier, ECE, DeLong z across all 18 (config, split) cells.
+Description:     AUC, PR-AUC, Brier, ECE, and within-split DeLong z (vs
+                 xgb_tab) across all 26 (config, split) cells of the
+                 main IEEE-CIS configuration matrix: 13 tree-learner
+                 variants and sage_only, under both random and temporal
+                 splits. The 13 variants include two tabular baselines,
+                 the sage_only relational baseline, three hybrids
+                 (xgb_sage_l1/l2, catb_sage_l1), six diagonal-scale
+                 controls (xgb/catb random_emb, permuted_emb,
+                 noise_inj), and the covariance-matched control
+                 xgb_covmatched_emb. The manuscript's Table 4 reports
+                 the same predictive numbers but uses same-learner
+                 DeLong references (catb_tab for CatBoost rows).
 
-Keywords:        AUC, PR-AUC, Brier, ECE, DeLong
+Keywords:        AUC, PR-AUC, Brier, ECE, DeLong, predictive performance,
+                 calibration
 
 See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
 Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted:       2026-06-01
+Submitted:       2026-06-02
 
 Datafile:        T1_performance.csv
 
