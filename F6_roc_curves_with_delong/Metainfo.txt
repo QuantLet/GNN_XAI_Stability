@@ -2,23 +2,26 @@ Name of Quantlet: F6_roc_curves_with_delong
 
 Published in:    Expert Systems with Applications (submitted)
 
-Description:     ROC curves under the temporal split for the 12 main
-                 IEEE-CIS configurations (two tabular baselines,
-                 sage_only, three hybrids, six controls). Labels carry
-                 AUC only; formal within-split DeLong comparisons use
+Description:     ROC curves under the temporal split for the 13 main
+                 IEEE-CIS tree-learner configurations: two tabular
+                 baselines, sage_only, three hybrids, six diagonal-scale
+                 controls, and the covariance-matched control
+                 xgb_covmatched_emb (drawn in amber). Labels carry AUC
+                 only; formal within-split DeLong comparisons use
                  same-learner references (XGBoost vs xgb_tab, CatBoost
-                 vs catb_tab) and live in Table T1_performance, not in
-                 this figure.
+                 vs catb_tab) and live in T1_performance, not in this
+                 figure.
 
-Keywords:        ROC, AUC, temporal split, multi-configuration
+Keywords:        ROC, AUC, temporal split, multi-configuration,
+                 covariance-matched control
 
 See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
 Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted:       2026-06-02
+Submitted:       2026-06-03
 
-Datafile:        preds_{config}_temporal.parquet, 12 files for the main
+Datafile:        preds_{config}_temporal.parquet, 13 files for the main
                  IEEE-CIS configurations
 
 Output:          F6_roc_curves_with_delong.pdf,

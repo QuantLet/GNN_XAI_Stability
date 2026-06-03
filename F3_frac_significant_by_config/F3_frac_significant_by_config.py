@@ -86,9 +86,9 @@ for b, v in zip(bars, vals):
             ha="center", fontsize=9)
 ax.set_xticks(xs); ax.set_xticklabels(labels, rotation=45, ha="right",
                                       rotation_mode="anchor")
-ax.set_ylabel("% features flagged (BH-FDR, alpha=0.05)")
+ax.set_ylabel("% flagged")
 ax.set_ylim(0, 65)
-ax.set_title("BH-flagged fraction by configuration (block-bootstrap)")
+ax.set_title("Fraction of features flagged by the BH-ranked diagnostic, read against the empirical null")
 fig.subplots_adjust(bottom=0.28)
 pdf, png = save_fig(fig, "F3_frac_significant_by_config", ".")
 plt.close(fig)

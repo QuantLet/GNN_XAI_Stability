@@ -70,6 +70,7 @@ MAIN_CONFIGS = (
     "xgb_sage_l1", "xgb_sage_l2", "catb_sage_l1",
     "xgb_random_emb", "xgb_permuted_emb", "xgb_noise_inj",
     "catb_random_emb", "catb_permuted_emb", "catb_noise_inj",
+    "xgb_covmatched_emb",
 )
 files = [Path(f"preds_{c}_temporal.parquet") for c in MAIN_CONFIGS]
 files = [f for f in files if f.exists()]
@@ -80,9 +81,14 @@ for i, p in enumerate(files):
     config = p.stem.removeprefix("preds_").rsplit("_temporal", 1)[0]
     fpr, tpr, _ = roc_curve(df["y_true"], df["y_proba"])
     auc = roc_auc_score(df["y_true"], df["y_proba"])
-    color = PALETTE["main_blue"] if "tab" in config else PALETTE["ida_red"]
-    if any(t in config for t in ("random_emb", "permuted_emb", "noise_inj")):
+    if "covmatched_emb" in config:
+        color = PALETTE["amber"]
+    elif any(t in config for t in ("random_emb", "permuted_emb", "noise_inj")):
         color = PALETTE["forest"]
+    elif "tab" in config:
+        color = PALETTE["main_blue"]
+    else:
+        color = PALETTE["ida_red"]
     label = f"{config} AUC={auc:.4f}"
     ax.plot(fpr, tpr, color=color, linewidth=1.5,
             linestyle=LINESTYLES[i % len(LINESTYLES)], label=label)

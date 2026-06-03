@@ -2,16 +2,22 @@ Name of Quantlet: F2_js_bars_with_ci
 
 Published in:    Expert Systems with Applications (submitted)
 
-Description:     Top 30 most unstable features: JS divergence bars with 95% block-bootstrap CIs for xgb_tab vs xgb_sage_l1; FDR-significant features marked.
+Description:     Top 30 most unstable features: JS divergence bars with 95%
+                 block-bootstrap CIs for xgb_tab vs xgb_sage_l1. Stars mark
+                 features flagged by the BH-ranked block-permutation
+                 diagnostic, read against the empirical null-resampling
+                 baseline (manuscript Appendix E) rather than as a
+                 calibrated false-discovery rate.
 
-Keywords:        Jensen-Shannon, block bootstrap, top-30, FDR, bar chart
+Keywords:        Jensen-Shannon, block bootstrap, top-30, BH-ranked
+                 diagnostic, bar chart, empirical null
 
 See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
 Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted:       2026-06-01
+Submitted:       2026-06-03
 
 Datafile:        stability_xgb_tab_vs_xgb_sage_l1_block_time.parquet
 
-Output:          F2_js_bars_with_ci.pdf
+Output:          F2_js_bars_with_ci.pdf, F2_js_bars_with_ci.png

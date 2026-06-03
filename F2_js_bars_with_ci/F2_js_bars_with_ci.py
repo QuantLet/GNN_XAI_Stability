@@ -1,10 +1,13 @@
 """
 Quantlet F2_js_bars_with_ci
 
-Top 30 most unstable features: JS divergence bars with 95% block-bootstrap CIs for xgb_tab vs xgb_sage_l1; FDR-significant features marked.
+Top 30 most unstable features: JS divergence bars with 95% block-bootstrap
+CIs for xgb_tab vs xgb_sage_l1. Stars mark features flagged by the
+BH-ranked block-permutation diagnostic, read against the empirical
+null-resampling baseline (manuscript Appendix E).
 
 Datafile(s): stability_xgb_tab_vs_xgb_sage_l1_block_time.parquet
-Output:      F2_js_bars_with_ci.pdf
+Output:      F2_js_bars_with_ci.pdf, F2_js_bars_with_ci.png
 
 Run from inside this folder:
     python F2_js_bars_with_ci.py
@@ -69,7 +72,8 @@ ax.bar(x + w/2, df["JS_B"], width=w, color=PALETTE["ida_red"], label="xgb_sage_l
 sig = df["significant_fdr"].values
 if sig.any():
     ax.scatter(x[sig] + w/2, df["JS_B"].values[sig] + 0.005,
-               color=PALETTE["crimson"], marker="*", s=70, label="FDR<0.05")
+               color=PALETTE["crimson"], marker="*", s=70,
+               label="BH-ranked diagnostic flag")
 ax.set_xticks(x); ax.set_xticklabels(df.index, rotation=45, ha="right", fontsize=10,
                                       rotation_mode="anchor")
 ax.set_ylabel("JS divergence (random vs. temporal)")

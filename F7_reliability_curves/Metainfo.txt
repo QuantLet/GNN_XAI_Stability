@@ -3,20 +3,22 @@ Name of Quantlet: F7_reliability_curves
 Published in:    Expert Systems with Applications (submitted)
 
 Description:     Reliability (calibration) curves under the temporal
-                 split for the 12 main IEEE-CIS configurations (two
-                 tabular baselines, sage_only, three hybrids, six
-                 controls). ECE annotations are included in the legend.
+                 split for the 13 main IEEE-CIS tree-learner
+                 configurations: two tabular baselines, sage_only, three
+                 hybrids, six diagonal-scale controls, and the
+                 covariance-matched control xgb_covmatched_emb (drawn in
+                 amber). ECE annotations are included in the legend.
 
 Keywords:        reliability diagram, ECE, calibration, temporal shift,
-                 multi-configuration
+                 multi-configuration, covariance-matched control
 
 See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
 Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted:       2026-06-02
+Submitted:       2026-06-03
 
-Datafile:        calibration_{config}_temporal.parquet, 12 files for the
+Datafile:        calibration_{config}_temporal.parquet, 13 files for the
                  main IEEE-CIS configurations
 
 Output:          F7_reliability_curves.pdf, F7_reliability_curves.png

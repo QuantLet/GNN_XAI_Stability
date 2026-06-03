@@ -67,6 +67,7 @@ MAIN_CONFIGS = (
     "xgb_sage_l1", "xgb_sage_l2", "catb_sage_l1",
     "xgb_random_emb", "xgb_permuted_emb", "xgb_noise_inj",
     "catb_random_emb", "catb_permuted_emb", "catb_noise_inj",
+    "xgb_covmatched_emb",
 )
 files = [Path(f"calibration_{c}_temporal.parquet") for c in MAIN_CONFIGS]
 files = [f for f in files if f.exists()]
@@ -76,9 +77,14 @@ ax.plot([0, 1], [0, 1], "--", color=PALETTE["light"], label="perfect")
 for i, p in enumerate(files):
     df = pd.read_parquet(p)
     config = p.stem.removeprefix("calibration_").rsplit("_temporal", 1)[0]
-    color = PALETTE["main_blue"] if "tab" in config else PALETTE["ida_red"]
-    if any(t in config for t in ("random_emb", "permuted_emb", "noise_inj")):
+    if "covmatched_emb" in config:
+        color = PALETTE["amber"]
+    elif any(t in config for t in ("random_emb", "permuted_emb", "noise_inj")):
         color = PALETTE["forest"]
+    elif "tab" in config:
+        color = PALETTE["main_blue"]
+    else:
+        color = PALETTE["ida_red"]
     w = df["count"] / df["count"].sum()
     ece = (w * (df["acc"] - df["conf"]).abs()).sum()
     ax.plot(df["conf"], df["acc"], "-o", color=color, markersize=3,
