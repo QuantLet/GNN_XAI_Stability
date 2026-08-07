@@ -1,0 +1,42 @@
+Name of Quantlet: GNNXAI_pipeline
+
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
+
+Description:     Single end-to-end entry point that regenerates every cache the
+                 figure/table Quantlets consume, in a fixed idempotent order:
+                 embeddings -> hybrid -> shap -> stability -> calibration ->
+                 figures -> tables. Trains the 28 (configuration, split) models
+                 (XGBoost/CatBoost tabular baselines, frozen heterogeneous
+                 GraphSAGE hybrids at layers 1-2, and the diagonal-scale random /
+                 permuted / noise-injected and covariance-matched negative
+                 controls), computes interventional TreeExplainer SHAP, runs the
+                 Algorithm-1 stability diagnostic (Jensen-Shannon divergence,
+                 block bootstrap, block-permutation with BH), and writes the
+                 predictive/calibration tables. A thin launcher over
+                 tools/run_pipeline.py; supports --only <stages> and
+                 --configs <ids>. NOT self-contained: it needs the raw IEEE-CIS
+                 and Elliptic datasets and produces the large intermediate caches
+                 that are archived externally. The downstream Quantlets each ship
+                 their small committed input and run self-contained.
+
+Keywords:        pipeline, reproducibility, orchestration, GraphSAGE,
+                 gradient boosting, SHAP, negative control, distribution shift,
+                 fraud detection, end-to-end
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection;
+                 all F* and T* Quantlets consume this pipeline's caches
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-07-13
+
+Datafile:        Raw IEEE-CIS Fraud Detection and Elliptic Bitcoin datasets
+                 (public; downloaded via scripts/00_prepare_data.py, Kaggle
+                 account required). Intermediate SHAP/embedding caches are large
+                 (several hundred MB), git-ignored, and archived externally (see
+                 the paper's Data-availability statement).
+
+Output:          The committed figure/table caches under results/tables/ and
+                 submission/quantlets/*/ (stability_*, preds_*, calibration_*,
+                 single_set_*, null_bands_all.csv) consumed by the F* / T*
+                 Quantlets.

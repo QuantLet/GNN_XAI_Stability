@@ -7,20 +7,20 @@
 ```
 Name of Quantlet: T7_temporal_cutoff_robustness
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Robustness across 60/40, 70/30, 80/20 temporal cutoffs. Flagged fraction clusters at 52.5/53.7/49.2; delta_k essentially flat.
+Description:     Robustness across 60/40, 70/30, 80/20 temporal cutoffs. Flagged fraction clusters at 52.5/53.7/49.2; delta_k essentially flat.
 
-Keywords: cutoff robustness, multiple cutoffs, internal replication
+Keywords:        cutoff robustness, multiple cutoffs, internal replication
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-01
 
-Datafile: T7_temporal_cutoff_robustness.csv
+Datafile:        T7_temporal_cutoff_robustness.csv
 
-Output: T7_temporal_cutoff_robustness.csv, T7_temporal_cutoff_robustness.tex
+Output:          T7_temporal_cutoff_robustness.csv, T7_temporal_cutoff_robustness.tex
 
 ```

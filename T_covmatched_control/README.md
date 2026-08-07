@@ -7,22 +7,47 @@
 ```
 Name of Quantlet: T_covmatched_control
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Covariance-matched embedding control:
+Description:     Covariance-matched embedding control:
+                 xgb_covmatched_emb is drawn from N(0, Sigma_hat) with
+                 Sigma_hat the empirical 64x64 covariance of the real
+                 layer-one GraphSAGE embedding (per split). Unlike the
+                 diagonal-scale random control (matched variance only),
+                 this control reproduces the full second-order
+                 covariance structure of the real embedding while
+                 carrying no graph signal. Reports two diagnostic
+                 results: (i) xgb_tab vs xgb_covmatched_emb (left
+                 columns of Table 3) and (ii) the cross-pair test
+                 xgb_covmatched_emb vs xgb_sage_l1 (T2b). On XGBoost
+                 the covariance-matched control reproduces a LARGER
+                 mean stability gain against xgb_tab than the real
+                 xgb_sage_l1 (mean delta = -0.0152 vs -0.0054), and the
+                 cross-pair T2b flagged fraction is 37.7% with a
+                 positive mean delta = +0.0093 --- at the XGBoost
+                 re-seeded null floor (pairwise band [35.8%, 44.1%]),
+                 so the real embedding is no more stable than the
+                 covariance-matched control. The apparent headline
+                 gain is therefore attributable to column augmentation
+                 plus matched embedding covariance; no graph-information
+                 channel beyond covariance is detectable by this
+                 diagnostic.
 
-results: (i) xgb_tab vs xgb_covmatched_emb (left
+Keywords:        covariance-matched control, negative control,
+                 graph-structure null, embedding covariance,
+                 column augmentation, SHAP stability, decomposition
 
-Keywords: covariance-matched control, negative control,
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection;
+                 manuscript Section 5.2 / Table 3
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection;
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Author: Delia Diaconu, Daniel Traian Pele
+Submitted:       2026-06-02
 
-Submitted: 2026-06-02
+Datafile:        T_covmatched_control.csv (results of the two pairwise
+                 diagnostics; reproduced by
+                 scripts/run_covmatched_control.py in the main pipeline)
 
-Datafile: T_covmatched_control.csv (results of the two pairwise
-
-Output: T_covmatched_control.csv
+Output:          T_covmatched_control.csv
 
 ```

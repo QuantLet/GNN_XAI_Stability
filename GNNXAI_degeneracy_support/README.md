@@ -1,0 +1,41 @@
+<div style="margin: 0; padding: 0; text-align: center; border: none;">
+<a href="https://quantlet.com" target="_blank" style="text-decoration: none; border: none;">
+<img src="https://github.com/StefanGam/test-repo/blob/main/quantlet_design.png?raw=true" alt="Header Image" width="100%" style="margin: 0; padding: 0; display: block; border: none;" />
+</a>
+</div>
+
+```
+Name of Quantlet:GNNXAI_degeneracy_support
+
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under
+                 Distribution Shift (submitted, Expert Systems with Applications)
+
+Description:     Degenerate-feature census and the live common support. A tabular column
+                 that neither configuration ever splits on has SHAP identically zero in all
+                 four samples, so delta_k = 0 and p_k = 1 by construction: it can never be
+                 flagged, yet it sits in the denominator of the flagged fraction. The
+                 degenerate mass is asymmetric -- the hybrid retires 35 of 486 columns
+                 against the baseline's 25 (CatBoost 47 against 31) -- so the headline
+                 contrast is recomputed on the 451 columns both arms actually use, with BH
+                 re-run on the restricted family rather than sub-setting existing adjusted
+                 p-values. The flagged fraction rises from 36.0% to 37.5% and the panel
+                 mean moves from -0.0054 to +0.0002, showing that the negative panel mean
+                 is carried entirely by features one arm drops. The verdict is unchanged
+                 because the reference band moves with the statistic.
+
+Keywords:        degenerate features, common support, saturation, Benjamini-Hochberg,
+                 flagged fraction, SHAP stability, negative control
+
+See also:        GNNXAI_null_bands; GNNXAI_null_bands_matched; manuscript Section 5.1
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-08-01
+
+Datafile:        degeneracy_audit.csv (committed; drives the figure). Produced by
+                 scripts/degeneracy_audit.py from the per-feature SHAP caches, which are
+                 git-ignored and archived externally.
+
+Output:          GNNXAI_degeneracy_support.png, GNNXAI_degeneracy_support.pdf
+
+```

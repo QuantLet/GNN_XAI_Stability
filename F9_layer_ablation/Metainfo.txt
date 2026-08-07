@@ -1,6 +1,6 @@
 Name of Quantlet: F9_layer_ablation
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Layer ablation: per-feature stability gain delta_k under L1 vs L2 SAGE embeddings.
 

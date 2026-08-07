@@ -1,8 +1,21 @@
 Name of Quantlet: T8_elliptic_stability
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description:     Elliptic Bitcoin replication: headline xgb_tab vs xgb_sage_l1 (46.1% flagged, delta_k=-0.0299) and T2b cross-pair (39.4%, delta_k=-0.0243).
+Description:     Elliptic Bitcoin replication (single-set, quantile bins),
+                 read against the Elliptic XGBoost leave-one-out pairwise
+                 null band [26.7%, 40.6%]. XGBoost headline xgb_tab vs
+                 xgb_sage_l1: delta_k=-0.0080 (32.1% flagged); diagonal-scale
+                 T2b (xgb_random_emb vs xgb_sage_l1): delta_k=-0.0380 (36.4%);
+                 covariance-matched T2b (xgb_covmatched_emb vs xgb_sage_l1):
+                 delta_k=-0.0214 (40.0%). On the flagged-fraction axis nothing
+                 clears the null; on the effect-size axis both T2b contrasts
+                 fall below the null lower edge (-0.0154) --- a benchmark-specific,
+                 effect-size-only residual, the opposite direction to IEEE-CIS.
+                 The CatBoost arm is inconclusive: headline delta_k=+0.0425
+                 (29.7%) and covariance-matched T2b delta_k=+0.0143 (32.1%) sit
+                 inside a wide regenerated null, and the sign is fragile to the
+                 GraphSAGE initialization seed.
 
 Keywords:        Elliptic, Bitcoin, cross-dataset replication
 

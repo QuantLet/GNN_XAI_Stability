@@ -7,20 +7,20 @@
 ```
 Name of Quantlet: T5_feature_class_decomposition
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Per-feature-class decomposition: entity-related (33) vs non-entity (453). XGBoost ratio 2.50x; CatBoost ratio 0.91x.
+Description:     Per-feature-class decomposition: entity-related (33) vs non-entity (453). XGBoost ratio 2.50x; CatBoost ratio 0.91x.
 
-Keywords: feature class, entity, signal effect, cross-learner asymmetry
+Keywords:        feature class, entity, signal effect, cross-learner asymmetry
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-01
 
-Datafile: T5_feature_class_decomposition.csv
+Datafile:        T5_feature_class_decomposition.csv
 
-Output: T5_feature_class_decomposition.csv, T5_feature_class_decomposition.tex
+Output:          T5_feature_class_decomposition.csv, T5_feature_class_decomposition.tex
 
 ```

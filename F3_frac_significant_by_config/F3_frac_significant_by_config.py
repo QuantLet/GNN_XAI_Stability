@@ -56,40 +56,65 @@ import matplotlib.pyplot as plt
 
 set_rcparams()
 
-CANONICAL = [
-    ("xgb_tab", "xgb_sage_l1"),
-    ("xgb_tab", "xgb_sage_l2"),
-    ("xgb_tab", "xgb_noise_inj"),
-    ("xgb_tab", "xgb_random_emb"),
-    ("xgb_tab", "xgb_permuted_emb"),
-    ("catb_tab", "catb_sage_l1"),
-]
-LABEL = {"xgb_tab": "xgb", "catb_tab": "catb",
-         "xgb_sage_l1": "xgb+L1", "xgb_sage_l2": "xgb+L2",
-         "catb_sage_l1": "catb+L1", "xgb_random_emb": "xgb+rand",
-         "xgb_permuted_emb": "xgb+perm", "xgb_noise_inj": "xgb+noise"}
+# ---------------------------------------------------------------------------
+# PRIMARY (quantile-bin) per-configuration flagged fractions.
+#
+# The original per-feature quantile SHAP/stability parquets that produced these
+# fractions were lost in the 2026-06-22 disk crash (see STATUS.md); the shipped
+# stability_*.parquet caches are the equal-width robustness spec / a partial
+# reconstruction and do NOT reproduce the paper's primary-quantile Table 2/3
+# fractions. This figure is therefore plotted from the published, table-backed
+# quantile values in F3_published_quantile.csv (each cell cited to Table 2 or
+# Table 3), so that Figure 3 matches Table 2 (tab:primary) and Table 3
+# (tab:controls) exactly rather than the equal-width numbers previously shown.
+# ---------------------------------------------------------------------------
+df = pd.read_csv("F3_published_quantile.csv")
+labels = df["label"].tolist()
+vals = df["flagged_pct"].tolist()
+# embedding hybrids (incl. the noise-injected perturbation of the real hybrid) in
+# red; column-augmentation controls (random / permuted) in green.
+color_for = {"hybrid": PALETTE["ida_red"], "hybrid_perturbation": PALETTE["ida_red"],
+             "control": PALETTE["forest"]}
+colors = [color_for[r] for r in df["role"]]
 
-rows = []
-for a, b in CANONICAL:
-    df = pd.read_parquet(f"stability_{a}_vs_{b}_block_time.parquet")
-    n_sig = int(df["significant_fdr"].sum()); n = len(df)
-    rows.append((f"{LABEL[a]} vs {LABEL[b]}", 100.0 * n_sig / n))
+# Learner-specific IEEE-CIS pairwise null bands, read from the canonical
+# results/tables/null_bands_all.csv. There is deliberately NO fallback: a silent
+# default is how this figure came to print a superseded band ([35.8, 44.1]) after the
+# table was re-anchored to the regenerated [36.0, 44.0]. The figure legend is outside
+# the manuscript number audit's scope, so it must fail loudly here instead.
+def _ieee_band(learner):
+    f = Path(__file__).resolve().parents[3] / "results" / "tables" / "null_bands_all.csv"
+    if not f.exists():
+        raise SystemExit(f"missing {f}; run scripts/null_bands_assemble.py first")
+    nb = pd.read_csv(f)
+    row = nb[(nb["dataset"] == "IEEE-CIS") & (nb["learner"] == learner)
+             & (nb["binning"] == "quantile")]
+    if not len(row):
+        raise SystemExit(f"no IEEE-CIS/{learner}/quantile row in {f.name}")
+    return (round(float(row["lo"].iloc[0]) * 100, 1),
+            round(float(row["hi"].iloc[0]) * 100, 1))
 
-labels = [r[0] for r in rows]; vals = [r[1] for r in rows]
-colors = [PALETTE["ida_red"]] * 3 + [PALETTE["forest"]] * 2 + [PALETTE["ida_red"]]
+XGB_BAND = _ieee_band("XGBoost")
+CATB_BAND = _ieee_band("CatBoost")
 
 fig, ax = plt.subplots(figsize=(10, 5.2))
 xs = np.arange(len(labels))
-bars = ax.bar(xs, vals, color=colors, edgecolor="black", linewidth=0.8)
+# shade the XGBoost null band across the five XGBoost bars (all but the last)
+ax.axhspan(XGB_BAND[0], XGB_BAND[1], xmax=5/6, color=PALETTE["light"], alpha=0.5, zorder=0,
+           label=f"XGBoost null band [{XGB_BAND[0]}, {XGB_BAND[1]}]")
+ax.axhspan(CATB_BAND[0], CATB_BAND[1], xmin=5/6, color="#F4C2C2", alpha=0.5, zorder=0,
+           label=f"CatBoost null band [{CATB_BAND[0]}, {CATB_BAND[1]}]")
+bars = ax.bar(xs, vals, color=colors, edgecolor="black", linewidth=0.8, zorder=3)
 for b, v in zip(bars, vals):
     ax.text(b.get_x() + b.get_width()/2, v + 1.0, f"{v:.1f}%",
-            ha="center", fontsize=9)
+            ha="center", fontsize=9, zorder=4)
 ax.set_xticks(xs); ax.set_xticklabels(labels, rotation=45, ha="right",
                                       rotation_mode="anchor")
-ax.set_ylabel("% flagged")
+ax.set_ylabel("% flagged (quantile bins)")
 ax.set_ylim(0, 65)
-ax.set_title("Fraction of features flagged by the BH-ranked diagnostic, read against the empirical null")
+ax.set_title("Fraction of features flagged by the BH-ranked diagnostic, read against the empirical null band")
+ax.legend(loc="upper right", fontsize=8, frameon=False)
 fig.subplots_adjust(bottom=0.28)
 pdf, png = save_fig(fig, "F3_frac_significant_by_config", ".")
 plt.close(fig)
-print("saved:", pdf)
+print("saved:", pdf, "values:", list(zip(labels, vals)))

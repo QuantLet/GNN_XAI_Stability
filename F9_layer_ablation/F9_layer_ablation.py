@@ -55,20 +55,31 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 set_rcparams()
+
+# ---------------------------------------------------------------------------
+# Single-set (quantile b=50) per-feature stability gains from the one end-to-end run
+# behind Table 2 (tab:primary): L1 mean delta_k = -0.0054, L2 mean delta_k = +0.0024.
+# Both distributions sit at the null floor and overlap around zero -- neither layer
+# stabilizes above the re-seeded null (App. E). L1 is marginally more negative and
+# tighter than L2, but the difference is within the null.
+# ---------------------------------------------------------------------------
 d1 = pd.read_parquet("stability_xgb_tab_vs_xgb_sage_l1_block_time.parquet")
 d2 = pd.read_parquet("stability_xgb_tab_vs_xgb_sage_l2_block_time.parquet")
+m1, m2 = d1["delta_obs"].mean(), d2["delta_obs"].mean()
 
 fig, ax = plt.subplots(figsize=(8.5, 5.2))
 ax.hist(d1["delta_obs"], bins=40, alpha=0.6, color=PALETTE["ida_red"],
-        label=f"L1: mean delta_k = {d1['delta_obs'].mean():.4f}")
+        label=f"L1 per-feature $\\delta_k$ (mean {m1:+.4f})")
 ax.hist(d2["delta_obs"], bins=40, alpha=0.5, color=PALETTE["main_blue"],
-        label=f"L2: mean delta_k = {d2['delta_obs'].mean():.4f}")
+        label=f"L2 per-feature $\\delta_k$ (mean {m2:+.4f})")
 ax.axvline(0, color=PALETTE["grey"], linestyle="--", lw=1)
+ax.axvline(m1, color=PALETTE["ida_red"], linestyle="-", lw=2)
+ax.axvline(m2, color=PALETTE["main_blue"], linestyle="-", lw=2)
 ax.set_xlabel("delta_k = JS_hybrid - JS_tab")
 ax.set_ylabel("# features")
 ax.set_title("Layer ablation: per-feature stability gain (L1 vs L2)")
-legend_below(ax, y_offset=-0.20)
-fig.subplots_adjust(bottom=0.25)
+legend_below(ax, y_offset=-0.28, ncol=2)
+fig.subplots_adjust(bottom=0.32)
 pdf, png = save_fig(fig, "F9_layer_ablation", ".")
 plt.close(fig)
-print("saved:", pdf)
+print("saved:", pdf, "single-set means L1", round(m1,4), "L2", round(m2,4))

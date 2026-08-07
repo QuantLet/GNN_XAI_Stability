@@ -58,13 +58,16 @@ without shared infrastructure:
 
 All files live at the Quantlet folder root --- no subdirectories.
 
-The 17 Quantlets:
+The 20 Quantlets:
 
 | Quantlet | Output |
 |---|---|
+| GNNXAI_pipeline               | End-to-end pipeline entry point (regenerates every cache the others consume) |
+| GNNXAI_null_bands             | Leave-one-out pairwise null-band construction + verdict figure (every fraction vs its own cell band) |
 | F1_framework_overview         | F1 framework schematic |
 | F2_js_bars_with_ci            | F2 top-30 per-feature JS bars |
-| F3_frac_significant_by_config | F3 BH-flagged fraction across configurations |
+| F3_frac_significant_by_config | F3 BH-flagged fraction across configurations vs learner-specific null bands |
+| F_null_pvalue_hist            | Fig E.8 null p-value histogram (40.0% below 0.05; anti-conservatism) |
 | F3b_persistence_bimodal       | F3b persistence-ratio plot (real / covariance-matched / diagonal controls; no single-metric separator) |
 | F6_roc_curves_with_delong     | F6 ROC curves under temporal split (AUC-only labels) |
 | F7_reliability_curves         | F7 reliability curves with ECE |

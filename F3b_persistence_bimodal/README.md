@@ -7,24 +7,27 @@
 ```
 Name of Quantlet: F3b_persistence_bimodal
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Attribution-persistence-ratio bimodal separator: real-signal hybrids in [0.87, 1.08], column-aug controls in [0.24, 0.46].
+Description:     Attribution-persistence-ratio plot per configuration across
+                 three groups: real embedding (red) in [0.87, 1.08],
+                 covariance-matched control (amber) at 0.55, and
+                 diagonal/permutation controls (green) in [0.24, 0.46].
+                 The covariance-matched control lands between the two
+                 bands, so the metric does not isolate graph structure as
+                 a single-metric separator; reported descriptively.
 
-Keywords: attribution persistence, bimodal, regularization vs signal
+Keywords:        attribution persistence, covariance-matched control,
+                 negative control, regularization, descriptive metric
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-02
 
-Datafile: T1b_attribution_persistence.csv
+Datafile:        T1b_attribution_persistence.csv
 
-Output: F3b_persistence_bimodal.pdf
+Output:          F3b_persistence_bimodal.pdf, F3b_persistence_bimodal.png
 
 ```
-<div align="center">
-<img src="https://raw.githubusercontent.com/QuantLet/GNN_XAI_Stability/main/F3b_persistence_bimodal/F3b_persistence_bimodal.png" alt="Image" />
-</div>
-

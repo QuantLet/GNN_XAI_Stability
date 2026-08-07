@@ -1,0 +1,45 @@
+<div style="margin: 0; padding: 0; text-align: center; border: none;">
+<a href="https://quantlet.com" target="_blank" style="text-decoration: none; border: none;">
+<img src="https://github.com/StefanGam/test-repo/blob/main/quantlet_design.png?raw=true" alt="Header Image" width="100%" style="margin: 0; padding: 0; display: block; border: none;" />
+</a>
+</div>
+
+```
+Name of Quantlet: F_null_pvalue_hist
+
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
+
+Description:     Figure E.8. Pooled per-feature raw block-permutation p-values
+                 under the empirical re-seeded-baseline null: configuration B is
+                 the same xgb_tab model refit under a different random_state, so
+                 every feature is a true negative (quantile bins, daily blocks,
+                 seeds 10-14 vs the seed-42 reference; 2,430 = 486 x 5
+                 feature-level values). A calibrated test would be uniform
+                 (dashed reference); the observed distribution is sharply
+                 concentrated near zero, with 40.0% of features below 0.05
+                 against the nominal 5%. This visualizes the diagnostic's
+                 anti-conservatism and is why per-feature flags are read against
+                 the empirical re-seeded null band rather than at a fixed alpha.
+                 The original per-feature quantile p-values were lost in the
+                 2026-06-22 disk crash; the figure is regenerated from the
+                 reproducible pipeline (scripts/null_refit_lean.py +
+                 scripts/null_analysis.py), and its 40.0% reproduces the
+                 published 39.7%.
+
+Keywords:        p-value histogram, permutation test, empirical null,
+                 anti-conservative, size check, SHAP stability, block bootstrap,
+                 false-discovery
+
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection;
+                 manuscript Appendix E (null-resampling), Figure E.8
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-06-03
+
+Datafile:        F_null_pvalue_hist.csv (the 2,430 pooled raw p-values; committed,
+                 self-contained)
+
+Output:          F_null_pvalue_hist.pdf, F_null_pvalue_hist.png
+
+```

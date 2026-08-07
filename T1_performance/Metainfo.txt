@@ -1,6 +1,6 @@
 Name of Quantlet: T1_performance
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     AUC, PR-AUC, Brier, ECE, and within-split DeLong z (vs
                  xgb_tab) across all 26 (config, split) cells of the

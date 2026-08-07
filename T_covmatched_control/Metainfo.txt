@@ -1,6 +1,6 @@
 Name of Quantlet: T_covmatched_control
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Covariance-matched embedding control:
                  xgb_covmatched_emb is drawn from N(0, Sigma_hat) with
@@ -14,12 +14,15 @@ Description:     Covariance-matched embedding control:
                  columns of Table 3) and (ii) the cross-pair test
                  xgb_covmatched_emb vs xgb_sage_l1 (T2b). On XGBoost
                  the covariance-matched control reproduces a LARGER
-                 mean stability gain than the real xgb_sage_l1
-                 (mean delta = -0.0460 vs -0.0302), and the T2b
-                 flagged fraction is 33.3% --- below the ~35%
-                 null-resampling baseline. The headline gain is
-                 therefore attributable to column augmentation plus
-                 matched embedding covariance; no graph-information
+                 mean stability gain against xgb_tab than the real
+                 xgb_sage_l1 (mean delta = -0.0152 vs -0.0054), and the
+                 cross-pair T2b flagged fraction is 37.7% with a
+                 positive mean delta = +0.0093 --- at the XGBoost
+                 re-seeded null floor (pairwise band [35.8%, 44.1%]),
+                 so the real embedding is no more stable than the
+                 covariance-matched control. The apparent headline
+                 gain is therefore attributable to column augmentation
+                 plus matched embedding covariance; no graph-information
                  channel beyond covariance is detectable by this
                  diagnostic.
 

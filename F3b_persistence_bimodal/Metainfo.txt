@@ -1,6 +1,6 @@
 Name of Quantlet: F3b_persistence_bimodal
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Attribution-persistence-ratio plot per configuration across
                  three groups: real embedding (red) in [0.87, 1.08],

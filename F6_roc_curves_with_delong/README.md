@@ -7,24 +7,31 @@
 ```
 Name of Quantlet: F6_roc_curves_with_delong
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: ROC curves for tabular vs hybrid configurations under the temporal split, with DeLong z annotations.
+Description:     ROC curves under the temporal split for the 13 main
+                 IEEE-CIS tree-learner configurations: two tabular
+                 baselines, sage_only, three hybrids, six diagonal-scale
+                 controls, and the covariance-matched control
+                 xgb_covmatched_emb (drawn in amber). Labels carry AUC
+                 only; formal within-split DeLong comparisons use
+                 same-learner references (XGBoost vs xgb_tab, CatBoost
+                 vs catb_tab) and live in T1_performance, not in this
+                 figure.
 
-Keywords: ROC, DeLong, AUC, temporal split
+Keywords:        ROC, AUC, temporal split, multi-configuration,
+                 covariance-matched control
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-03
 
-Datafile: preds_xgb_tab_temporal.parquet, preds_xgb_sage_l1_temporal.parquet, preds_catb_tab_temporal.parquet, preds_catb_sage_l1_temporal.parquet
+Datafile:        preds_{config}_temporal.parquet, 13 files for the main
+                 IEEE-CIS configurations
 
-Output: F6_roc_curves_with_delong.pdf
+Output:          F6_roc_curves_with_delong.pdf,
+                 F6_roc_curves_with_delong.png
 
 ```
-<div align="center">
-<img src="https://raw.githubusercontent.com/QuantLet/GNN_XAI_Stability/main/F6_roc_curves_with_delong/F6_roc_curves_with_delong.png" alt="Image" />
-</div>
-

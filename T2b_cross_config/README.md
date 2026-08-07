@@ -7,20 +7,20 @@
 ```
 Name of Quantlet: T2b_cross_config
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: T2b cross-pair test: control vs real-embedding hybrid -- residual stability channel beyond column augmentation.
+Description:     T2b cross-pair test: control vs real-embedding hybrid -- residual stability channel beyond column augmentation.
 
-Keywords: T2b, cross-pair, residual signal, column augmentation
+Keywords:        T2b, cross-pair, residual signal, column augmentation
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-01
 
-Datafile: T2b_cross_config.csv
+Datafile:        T2b_cross_config.csv
 
-Output: T2b_cross_config.csv, T2b_cross_config.tex
+Output:          T2b_cross_config.csv, T2b_cross_config.tex
 
 ```

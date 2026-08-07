@@ -1,6 +1,6 @@
 Name of Quantlet: T2b_cross_config
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     T2b cross-pair test: control vs real-embedding hybrid -- residual stability channel beyond column augmentation.
 

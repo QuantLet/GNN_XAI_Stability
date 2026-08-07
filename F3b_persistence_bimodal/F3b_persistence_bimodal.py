@@ -62,7 +62,8 @@ df = pd.read_csv("T1b_attribution_persistence.csv").set_index("config")
 real_configs = [c for c in ("xgb_sage_l1", "xgb_sage_l2", "catb_sage_l1",
                              "xgb_noise_inj", "catb_noise_inj")
                 if c in df.index]
-cov_configs  = [c for c in ("xgb_covmatched_emb",) if c in df.index]
+cov_configs  = [c for c in ("xgb_covmatched_emb", "catb_covmatched_emb")
+                if c in df.index]
 ctrl_configs = [c for c in ("xgb_random_emb", "xgb_permuted_emb",
                              "catb_random_emb", "catb_permuted_emb")
                 if c in df.index]

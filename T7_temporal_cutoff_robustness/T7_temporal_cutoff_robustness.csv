@@ -1,3 +1,4 @@
 cutoff,learner,pair,mean_JS_A,mean_JS_B,delta_k,pct_flagged_bb,pct_ci_sep_bb,n_features,resampling
-60,xgb,xgb_tab_vs_xgb_sage_l1,0.1136733407880356,0.084774604725531,-0.0288987360625046,52.46913580246913,50.41152263374486,486,block_time
-80,xgb,xgb_tab_vs_xgb_sage_l1,0.1000772701222395,0.07041616145887541,-0.029661108663364088,49.17695473251029,45.47325102880659,486,block_time
+60,xgb,xgb_tab_vs_xgb_sage_l1,0.292,0.2688,-0.0231,47.9424,48.7654,486,block_time
+70,xgb,xgb_tab_vs_xgb_sage_l1,0.3015,0.2878,-0.0137,45.4733,44.4444,486,block_time
+80,xgb,xgb_tab_vs_xgb_sage_l1,0.2711,0.2634,-0.0077,40.7407,42.5926,486,block_time

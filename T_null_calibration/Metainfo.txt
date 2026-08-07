@@ -1,6 +1,6 @@
 Name of Quantlet: T_null_calibration
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Null-resampling size check for Algorithm 1. Trains a
                  second copy of xgb_tab under a different XGBoost
@@ -10,9 +10,10 @@ Description:     Null-resampling size check for Algorithm 1. Trains a
                  hyperparameters) fixed, then applies the diagnostic
                  to the (xgb_tab, xgb_tab_seedB) pair under H0. Both
                  the daily-block and card1-cluster bootstraps flag
-                 ~35% of features at nominal alpha = 0.05, well above
-                 alpha, so the procedure is anti-conservative under
-                 this operational null. The manuscript therefore
+                 ~35% of features at nominal alpha = 0.05 (34.6% and
+                 34.8% respectively; the leave-one-out pairwise band is
+                 ~40%), well above alpha, so the procedure is
+                 anti-conservative under this operational null. The manuscript therefore
                  reads Algorithm 1 as a stability diagnostic against
                  this empirical null baseline rather than as a
                  calibrated significance test.

@@ -1,14 +1,18 @@
 Name of Quantlet: F3_frac_significant_by_config
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Per-configuration fraction of features flagged by the
                  BH-ranked block-permutation diagnostic across the six
                  canonical hybrid-vs-tabular and column-augmentation
                  control-vs-tabular comparisons. The diagnostic is read
-                 against the empirical null-resampling baseline (~35% at
-                 nominal alpha=0.05) rather than as a calibrated
-                 false-discovery rate. The metric captures per-feature
+                 against the learner-specific leave-one-out pairwise
+                 re-seeded null bands (IEEE-CIS XGBoost [35.8%, 44.1%],
+                 CatBoost [33.7%, 46.1%]; mean ~40% at nominal alpha=0.05)
+                 rather than as a calibrated false-discovery rate. Under
+                 those bands the XGBoost headline (36.0%) sits at the low
+                 end and the CatBoost headline (29.2%) below all draws ---
+                 neither hybrid stabilizes above the null. The metric captures per-feature
                  distributional change but does not isolate graph
                  information; residual real-embedding effects are
                  examined directly via the T2b cross-pair contrasts in

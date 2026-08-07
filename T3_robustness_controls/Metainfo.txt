@@ -1,6 +1,6 @@
 Name of Quantlet: T3_robustness_controls
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Four robustness control configurations against
                  xgb_tab: random embedding (diagonal scale), permuted

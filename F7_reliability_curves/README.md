@@ -7,24 +7,27 @@
 ```
 Name of Quantlet: F7_reliability_curves
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Reliability (calibration) curves for tabular vs hybrid under the temporal split; ECE annotations.
+Description:     Reliability (calibration) curves under the temporal
+                 split for the 13 main IEEE-CIS tree-learner
+                 configurations: two tabular baselines, sage_only, three
+                 hybrids, six diagonal-scale controls, and the
+                 covariance-matched control xgb_covmatched_emb (drawn in
+                 amber). ECE annotations are included in the legend.
 
-Keywords: reliability diagram, ECE, calibration, temporal shift
+Keywords:        reliability diagram, ECE, calibration, temporal shift,
+                 multi-configuration, covariance-matched control
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-03
 
-Datafile: calibration_xgb_tab_temporal.parquet, calibration_xgb_sage_l1_temporal.parquet, calibration_catb_tab_temporal.parquet, calibration_catb_sage_l1_temporal.parquet
+Datafile:        calibration_{config}_temporal.parquet, 13 files for the
+                 main IEEE-CIS configurations
 
-Output: F7_reliability_curves.pdf
+Output:          F7_reliability_curves.pdf, F7_reliability_curves.png
 
 ```
-<div align="center">
-<img src="https://raw.githubusercontent.com/QuantLet/GNN_XAI_Stability/main/F7_reliability_curves/F7_reliability_curves.png" alt="Image" />
-</div>
-

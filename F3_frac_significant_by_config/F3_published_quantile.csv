@@ -1,0 +1,7 @@
+pair,label,flagged_pct,family,role,source
+xgb_tab_vs_xgb_sage_l1,xgb vs xgb+L1,36.0,xgb,hybrid,single_set_stability.csv
+xgb_tab_vs_xgb_sage_l2,xgb vs xgb+L2,39.3,xgb,hybrid,single_set_stability.csv
+xgb_tab_vs_xgb_noise_inj,xgb vs xgb+noise,38.1,xgb,hybrid_perturbation,single_set_stability.csv
+xgb_tab_vs_xgb_random_emb,xgb vs xgb+rand,38.9,xgb,control,single_set_stability.csv
+xgb_tab_vs_xgb_permuted_emb,xgb vs xgb+perm,41.6,xgb,control,single_set_stability.csv
+catb_tab_vs_catb_sage_l1,catb vs catb+L1,29.2,catb,hybrid,single_set_stability.csv

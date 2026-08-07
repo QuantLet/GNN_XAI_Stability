@@ -1,6 +1,6 @@
 Name of Quantlet: T5_feature_class_decomposition
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Per-feature-class decomposition: entity-related (33) vs non-entity (453). XGBoost ratio 2.50x; CatBoost ratio 0.91x.
 

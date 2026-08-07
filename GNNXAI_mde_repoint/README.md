@@ -1,0 +1,39 @@
+<div style="margin: 0; padding: 0; text-align: center; border: none;">
+<a href="https://quantlet.com" target="_blank" style="text-decoration: none; border: none;">
+<img src="https://github.com/StefanGam/test-repo/blob/main/quantlet_design.png?raw=true" alt="Header Image" width="100%" style="margin: 0; padding: 0; display: block; border: none;" />
+</a>
+</div>
+
+```
+Name of Quantlet:GNNXAI_mde_repoint
+
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under
+                 Distribution Shift (submitted, Expert Systems with Applications)
+
+Description:     Minimum detectable effect of the band-referenced decision rule, read
+                 against both references. Injecting a controlled true stabilization into
+                 the real hybrid shows the rule clears the same-dimension edge (44.0%) only
+                 once the mean effect reaches about -0.030 on the [0, log 2] scale, five
+                 and a half times the observed headline of -0.0054. Read against the
+                 shape-matched edge (38.0%), which the 486-vs-550 geometry of the contrast
+                 actually calls for, the crossing falls to about -0.010, under twice the
+                 observed effect. The correctly shaped reference therefore makes the
+                 instrument more sensitive while leaving less headroom, and the paper
+                 states the bound at the tighter reading: no stabilization larger than
+                 about 0.010 in mean JS.
+
+Keywords:        minimum detectable effect, power, band-referenced decision rule, bounded
+                 negative result, shape-matched null, SHAP stability
+
+See also:        GNNXAI_null_bands_matched; manuscript Section 5.2 and Table E.16
+
+Author:          Delia Diaconu, Daniel Traian Pele
+
+Submitted:       2026-08-01
+
+Datafile:        mde_repointed.csv (committed; drives the figure). Produced by
+                 scripts/mde_repoint.py from the injection sweep.
+
+Output:          GNNXAI_mde_repoint.png, GNNXAI_mde_repoint.pdf
+
+```

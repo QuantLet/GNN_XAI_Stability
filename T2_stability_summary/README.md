@@ -7,20 +7,20 @@
 ```
 Name of Quantlet: T2_stability_summary
 
-Published in: Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
-Description: Algorithm 1 (block-bootstrap) primary stability comparisons -- mean JS, mean delta_k, BH-flagged fraction, CI-sep fraction.
+Description:     Algorithm 1 (block-bootstrap) primary stability comparisons -- mean JS, mean delta_k, BH-flagged fraction, CI-sep fraction.
 
-Keywords: Algorithm 1, block bootstrap, stability, JS divergence, BH-FDR
+Keywords:        Algorithm 1, block bootstrap, stability, JS divergence, BH-FDR
 
-See also: Diaconu and Pele 2026, GNN_XAI_Stability collection
+See also:        Diaconu and Pele 2026, GNN_XAI_Stability collection
 
-Author: Delia Diaconu, Daniel Traian Pele
+Author:          Delia Diaconu, Daniel Traian Pele
 
-Submitted: 2026-06-01
+Submitted:       2026-06-01
 
-Datafile: T2_stability_summary.csv
+Datafile:        T2_stability_summary.csv
 
-Output: T2_stability_summary.csv, T2_stability_summary.tex
+Output:          T2_stability_summary.csv, T2_stability_summary.tex
 
 ```

@@ -1,6 +1,6 @@
 Name of Quantlet: F7_reliability_curves
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Reliability (calibration) curves under the temporal
                  split for the 13 main IEEE-CIS tree-learner

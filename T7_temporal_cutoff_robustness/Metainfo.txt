@@ -1,6 +1,6 @@
 Name of Quantlet: T7_temporal_cutoff_robustness
 
-Published in:    Expert Systems with Applications (submitted)
+Published in:    Do Graph Embeddings Stabilize SHAP? A Controlled Decomposition under Distribution Shift (submitted, Expert Systems with Applications)
 
 Description:     Robustness across 60/40, 70/30, 80/20 temporal cutoffs. Flagged fraction clusters at 52.5/53.7/49.2; delta_k essentially flat.
 
