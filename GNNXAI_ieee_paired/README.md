@@ -25,3 +25,7 @@ For R8, `reference/context_by_seed.csv` contains the two absolute JS levels on t
     python scripts/report_ieee_context.py --directory reference --summary-only --output results/check --table-dir results/check
 
 Code for the two extra normalization contrasts and the top-ten plot is in scripts/plot_strict_ieee_comparisons.py.
+
+To reproduce the exploratory top-three and top-five agreement table, run
+`python scripts/strict_ieee_shortlists.py --directory reference --summary-only --output results/check`.
+The seed-level file gives the fraction of the tabular model's leading fields retained by each alternative on the same 5,000 payments, among the original 486 fields. The script checks the ten-field result against the earlier deposit. The four shorter-list contrasts use Bonferroni simultaneous 95% intervals over paired seed differences. To recompute the overlaps from the saved SHAP arrays after fitting, omit the flags.
