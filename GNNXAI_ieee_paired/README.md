@@ -51,3 +51,9 @@ The intervals resample the common evaluation period in seven-calendar-day circul
 The 1,000 paired bootstrap draws are also deposited in reference/stage_block_draws.csv. They contain AUC and average precision for each model in each draw, with no payment-level information. Regenerate the intervals from these public data with:
 
     python scripts/strict_ieee_stage_intervals.py --directory reference --from-draws --output results/stage_intervals_check.csv
+
+The exploratory AUC table uses two families of contrasts. For the three XGBoost refit contrasts, Bonferroni-adjusted paired Student intervals describe training variation on the fixed cohort. For the four fixed-model contrasts, shared seven-day circular bootstrap draws give a simultaneous band using the 95th percentile of the largest absolute centered contrast, standardized by its bootstrap standard deviation. The stored CatBoost contrasts use the same day draws as the stage experiment. Run the following command to reproduce the paired intervals and the manuscript table from the aggregate CSVs:
+
+    python scripts/strict_ieee_auc.py --reference reference --output results/check
+
+Without arguments, the script computes CatBoost's bootstrap contrasts from the saved temporal scores, verifies day-by-day draw alignment against the archived tabular bootstrap AUC, and writes the outputs under results/strict_ieee/stages.
