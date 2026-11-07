@@ -29,3 +29,25 @@ Code for the two extra normalization contrasts and the top-ten plot is in script
 To reproduce the exploratory top-three and top-five agreement table, run
 `python scripts/strict_ieee_shortlists.py --directory reference --summary-only --output results/check`.
 The seed-level file gives the fraction of the tabular model's leading fields retained by each alternative on the same 5,000 payments, among the original 486 fields. The script checks the ten-field result against the earlier deposit. The four shorter-list contrasts use Bonferroni simultaneous 95% intervals over paired seed differences. To recompute the overlaps from the saved SHAP arrays after fitting, omit the flags.
+
+The first-field comparison uses the 486 shared inputs ranked by absolute SHAP value. The reference file display_by_seed.csv contains counts over the 5,000 later payments per fit and the mean absolute attribution mass per payment, pooled over the 5,000 random and 5,000 temporal observations. No transaction IDs are needed for the published summary. Reproduce it with:
+
+    python scripts/strict_ieee_display.py --directory reference --summary-only --output results/check
+
+Running the same script without flags recomputes the counts and masses from the original paired SHAP checkpoints. The first-place tie rule is the canonical input order. Ties are counted for each model and seed.
+
+The stage-separation experiment retains the original forward holdout and splits the remaining payments at their median timestamp. Both blocks contain 206,689 transactions. All downstream trees train on the second block, using identical tabular features fitted there. The graph component is trained either in the first or second block with its own historical preprocessing. AUC and average precision cover all later payments. Local overlap uses 1,000 stratified later payments, with the same background and evaluation IDs across the three fits (the input columns depend on the model). The training design is exploratory and uses one graph initialization. The reference files stage_blocks.csv, stage_results.csv and stage_intervals.csv are sufficient to reproduce the manuscript table:
+
+    python scripts/render_ieee_stage_table.py --directory reference --output results/check/stages.tex
+
+To rerun from the original competition data:
+
+    python scripts/strict_ieee_stages.py
+    python scripts/strict_ieee_stage_intervals.py
+    python scripts/render_ieee_stage_table.py
+
+The intervals resample the common evaluation period in seven-calendar-day circular blocks, conditional on the fitted models. Each of 1,000 draws uses identical day weights across models. Only aggregate results are distributed.
+
+The 1,000 paired bootstrap draws are also deposited in reference/stage_block_draws.csv. They contain AUC and average precision for each model in each draw, with no payment-level information. Regenerate the intervals from these public data with:
+
+    python scripts/strict_ieee_stage_intervals.py --directory reference --from-draws --output results/stage_intervals_check.csv
