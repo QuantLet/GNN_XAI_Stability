@@ -22,6 +22,31 @@ def distances(random, temporal):
     return gap.mean(), normalized.mean()
 
 
+def write_scale_table(data, table_dir, common=None):
+    lines = [r"\begin{tabular}{lrrr}", r"\toprule", r"Scale and comparator & Mean difference & 95\% interval & Positive runs\\", r"\midrule"]
+    for scale in ("raw", "normalized"):
+        for arm, label in (("tab", "tabular"), ("cov", "Gaussian")):
+            delta = data[f"{scale}_hyb"] - data[f"{scale}_{arm}"]
+            mean = delta.mean()
+            half = stats.t.ppf(.975, len(delta)-1) * delta.sem()
+            digits = 5 if scale == "raw" else 4
+            line = (f"{scale.capitalize()}, {label} & {mean:+.{digits}f} & "
+                    f"$[{mean-half:+.{digits}f},{mean+half:+.{digits}f}]$ & "
+                    f"{(delta > 0).sum()}/{len(delta)}" + r"\\")
+            lines.append(line)
+            print(line, 'negative runs', (delta < 0).sum())
+    if common is not None:
+        if not common.index.equals(data.index):
+            raise ValueError("Mismatched common-scale seeds")
+        mean = common.mean()
+        half = stats.t.ppf(.975, len(common) - 1) * common.sem()
+        lines.append(f"Common scale, tabular & {mean:+.4f} & "
+                     f"$[{mean-half:+.4f},{mean+half:+.4f}]$ & "
+                     f"{(common > 0).sum()}/{len(common)}" + r"\\")
+    lines.extend([r"\bottomrule", r"\end{tabular}"])
+    (table_dir / "strict_ieee_scale.tex").write_text("\n".join(lines) + "\n")
+
+
 def run(directory, table_dir):
     paired = pd.read_csv(directory / "paired.csv").set_index("seed")
     if paired.index.tolist() != list(range(201, 221)):
@@ -45,20 +70,7 @@ def run(directory, table_dir):
                                        reference[["wasserstein", "normalized"]], atol=1e-10)
     data = pd.DataFrame(rows).set_index("seed")
     data.to_csv(directory / "wasserstein_by_seed.csv")
-    lines = [r"\begin{tabular}{lrrr}", r"\toprule", r"Scale and comparator & Mean difference & 95\% interval & Positive runs\\", r"\midrule"]
-    for scale in ("raw", "normalized"):
-        for arm, label in (("tab", "tabular"), ("cov", "Gaussian")):
-            delta = data[f"{scale}_hyb"] - data[f"{scale}_{arm}"]
-            mean = delta.mean()
-            half = stats.t.ppf(.975, len(delta)-1) * delta.sem()
-            digits = 5 if scale == "raw" else 4
-            line = (f"{scale.capitalize()}, {label} & {mean:+.{digits}f} & "
-                    f"$[{mean-half:+.{digits}f},{mean+half:+.{digits}f}]$ & "
-                    f"{(delta > 0).sum()}/{len(delta)}" + r"\\")
-            lines.append(line)
-            print(line, 'negative runs', (delta < 0).sum())
-    lines.extend([r"\bottomrule", r"\end{tabular}"])
-    (table_dir / "strict_ieee_scale.tex").write_text("\n".join(lines) + "\n")
+    write_scale_table(data, table_dir)
     figure_dir = table_dir.parent / "figures"
     figure_dir.mkdir(exist_ok=True)
     fig, axes = plt.subplots(2, 1, figsize=(6.25, 3.8), sharex=True, layout="constrained")
