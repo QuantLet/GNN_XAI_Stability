@@ -2,6 +2,10 @@
 
 [![Quantlet](https://github.com/QuantLet/Styleguide-and-FAQ/raw/master/pictures/qloqo.png)](http://quantlet.de/)
 
+## Paired IEEE-CIS replication
+
+[Code, seed-level data and exhibits for the random versus forward-time SHAP study](GNNXAI_ieee_paired/). The collection below documents the earlier experiments.
+
 ```
 Name of QuantletCollection: GNN_XAI_Stability
 Published in:               Expert Systems with Applications (submitted)

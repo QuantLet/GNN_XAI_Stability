@@ -1,0 +1,6 @@
+Name of Quantlet: GNNXAI_ieee_paired
+Description: Replication code and aggregate data for SHAP Stability Across Random and Forward-Time Validation in Graph-Augmented Fraud Detection. Twenty paired IEEE-CIS refits, covariance-matched controls, local rankings and feature-scale checks.
+Keywords: IEEE-CIS, fraud detection, GraphSAGE, SHAP, Jensen-Shannon divergence, Wasserstein distance
+Author: Delia Diaconu, Daniel Traian Pele
+Datafile: Seed-level replication data in reference/. Original IEEE-CIS transactions are available from the Kaggle competition after acceptance of its rules.
+Output: Paired estimates, seed-level predictive scores, tables and figures.

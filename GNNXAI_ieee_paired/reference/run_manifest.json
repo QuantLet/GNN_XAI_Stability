@@ -1,0 +1,75 @@
+{
+  "created": "2026-11-06T08:26:09.004025+00:00",
+  "python": "3.13.9",
+  "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "numpy": "2.4.2",
+    "pandas": "2.3.3",
+    "torch": "2.11.0",
+    "torch-geometric": "2.7.0",
+    "xgboost": "3.2.0",
+    "catboost": "1.2.10",
+    "shap": "0.51.0",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.8.0"
+  },
+  "sha256": {
+    "data/raw/train_transaction.csv": "3a5c83ab6b3cc13dcabe5ffa9f522307fd5f7f7b6e6f6a60c32284ca6283d642",
+    "data/raw/train_identity.csv": "b63c725d8377be90a995268d97f347c17d456b95db45807adcf9f59cd603c37c",
+    "src/feature_columns_486.json": "d70ecf015e84b50a399caf6fcee0215dea6e9ddf945fd967e95ab8e576dc4219",
+    "scripts/strict_ieee.py": "3f5e78081a5e9c3387f56c17a7333402187dbf081e883ac637efb2cf0db4e2af",
+    "scripts/strict_ieee_controls.py": "a90b6357d21aa0753e5af5e18ffd01438d32bab493694a4625ca0c94c8d3117f",
+    "scripts/check_strict_ieee.py": "0051691640a628cd5ed6212ee08a735219ab469f286766659ffef6061ab2afd1",
+    "src/gnn.py": "2c9a0db0418ba0df71d30fbd4b85f40f1f966016d36f88c484fb01cc00a72ce7",
+    "src/graph.py": "7306d48acb1608c76c269e3bb46874d7525a4e9b0a3f4f6bccbad5e486a54d79",
+    "src/data_prep.py": "7a3c5f1979da3adad2ac35db2b5ab28a399ca3f982afc893d57de6795baf8813",
+    "src/config.py": "0452ce6f6bda59fbfe4191cfc59256db2095212be37531ebd78675aee2e0d13b",
+    "src/embeddings.py": "03de94fd16a7cffdf42dc90bf853473a57f436f8ba29453a898d28cf2fc1530b",
+    "src/shap_engine.py": "a8659f450d88f3c354fcd80640d70675d779330b5aa3484ef17834d566e7d10e",
+    "src/splits.py": "3830723b7c4b09212770a3f9768b38efcb9380f3e4a18bb38be52bad1bd0c5cd",
+    "src/models.py": "977da7da63c99a5e9d8fdc562a58f0b6fc4df63922a983e5f78a3290d89b33d8",
+    "src/stability.py": "a0ad4a555c54066124f39723b1821a8705df396c7775c9ffe2fd61b9e7002b7c"
+  },
+  "primary_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220
+  ],
+  "canonical_seed": 42,
+  "pilot_seeds": [
+    201,
+    202,
+    203
+  ],
+  "primary_estimand": "Mean over 486 aligned tabular features of pair-specific quantile-bin JS(hybrid) minus JS(covariance-matched); negative favors the graph.",
+  "primary_unit": "One random-split and GraphSAGE seed, conditional on the observed transactions and fixed forward-time evaluation period.",
+  "secondary": "Baseline-to-hybrid JS, within-row top-10 and Spearman differences, scale and Wasserstein diagnostics. Confidence intervals for individual measures are pointwise; secondary metrics are exploratory.",
+  "catboost_inner": "85 percent chronological cutoff inside outer training data; refit representation and trees on all outer training data using selected tree count.",
+  "wide_control": "703 dimensions fixed from historical experiment; check attained scale empirically. The Wasserstein contrasts at seed 42 are descriptive.",
+  "pilot": "6000 actual transactions sampled with random_state=42 before temporal ordering; reduced fits only. Excluded from full-data inference.",
+  "runner_changes": [
+    {
+      "timestamp": "2026-11-06T10:45:07.996539+02:00",
+      "previous_sha256": "7e2344f5cf482afa54eadcf965e1728dab5133004830c9cf49f5452d16740a39",
+      "file": "scripts/strict_ieee.py",
+      "change": "Checkpoint each arm atomically and score before SHAP; original full run stopped before saving a split."
+    }
+  ]
+}
