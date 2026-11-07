@@ -59,3 +59,18 @@ The exploratory AUC table uses two families of contrasts. For the three XGBoost 
 Without arguments, the script computes CatBoost's bootstrap contrasts from the saved temporal scores, verifies day-by-day draw alignment against the archived tabular bootstrap AUC, and writes the outputs under results/strict_ieee/stages.
 
 The wide Gaussian control is an exploratory scale check. The earlier width search in reference/legacy_scale_width_search.csv targeted the median ratio of the original fields' mean absolute SHAP contributions (graph relative to tabular). Linear interpolation between the 512- and 768-column probes at the target of 0.627 gave 703 columns after rounding. The current analysis keeps this width fixed. In reference/scale.csv, share is the sum of absolute SHAP contributions for the added coordinates divided by the sum over all coordinates, pooling 5,000 explanations from each validation scheme. The wide control received 44.6% and the graph coordinates 39.5% in that single comparison. For the separate 20-refit analysis, use reference/context_by_seed.csv.
+
+### Successive temporal cutoffs and importance weighting
+
+The exploratory rolling study fits one tabular model and three graph specifications at each of the 60%, 70% and 80% transaction-time quantiles. Each graph specification uses initializations 201–203. The downstream trees use the second half of the available history. All fits explain the same 1,000 later transactions using the same 100 historical background transaction IDs. Reassigned historical edges preserve entity degrees within calendar day and relation type. The 20 original random/temporal pairs are a different experiment.
+
+From this Quantlet directory, with the original competition files in data/raw, run:
+
+    python scripts/chronological_stress.py . results/rolling
+    python scripts/rolling_contrasts.py results/rolling data/raw/train_transaction.csv results/rolling/audit
+    python scripts/report_chronological.py results/rolling data/raw/train_transaction.csv results/rolling/table.tex
+    python scripts/weighted_stability.py results/strict_ieee/primary
+
+The public reference files contain per-fit metrics, numbers of reassigned links, agreement across updates, nine paired AUC contrasts, and the importance-weighted results for the original 20 pairs. The rolling AUC intervals use 12,000 paired resamples of seven-day circular blocks per window and Bonferroni adjustment across all nine contrasts, conditional on the fitted models. Raw competition files and individual predictions are obtained by downloading the original data under the Kaggle competition rules and running the code. To regenerate the printed temporal table directly from the public summaries:
+
+    python -c "import sys,pandas as pd; sys.path.insert(0,'scripts'); from report_chronological import render; print(render(pd.read_csv('reference/rolling_fits.csv')),end='')"
