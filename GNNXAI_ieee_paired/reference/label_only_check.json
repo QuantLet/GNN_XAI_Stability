@@ -1,0 +1,12 @@
+{
+  "seed": 201,
+  "max_epochs": 2,
+  "sample_rows": 1200,
+  "historical_rows": 840,
+  "heldout_rows": 360,
+  "heldout_labels_flipped": 360,
+  "embedding_width": 64,
+  "changed_historical_embeddings": 0,
+  "changed_heldout_embeddings": 0,
+  "max_absolute_embedding_difference": 0.0
+}

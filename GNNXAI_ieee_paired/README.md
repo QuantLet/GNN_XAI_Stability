@@ -6,7 +6,7 @@ Run `python GNNXAI_ieee_paired.py` to reproduce the primary comparison from the 
 
 For a fresh run, use Python 3.13 and install requirements.txt. Run the following commands from the extracted project root, in this order:
 
-    python scripts/check_strict_ieee.py
+    python scripts/check_strict_ieee.py --output results/check/label_only_check.json
     python scripts/strict_ieee.py
     python scripts/strict_ieee_controls.py
     python scripts/render_strict_ieee_table.py
@@ -14,7 +14,7 @@ For a fresh run, use Python 3.13 and install requirements.txt. Run the following
     python scripts/plot_strict_ieee_comparisons.py
     python scripts/report_ieee_context.py
 
-The first command checks that changing held-out data leaves the training representation unchanged. The next two fit the models. The remaining scripts regenerate the exhibits from the saved fits. Compare the resulting CSV files in results/strict_ieee/primary with reference/. The working output and reference directories are separate to allow fresh fitting. GPU and software differences can affect numerical reproducibility.
+The first command reruns the graph on the same 1,200 transactions with the 360 later labels flipped and all input fields fixed (seed 201, two epochs). It checks every coordinate of the historical and held-out embeddings against the unaltered run. The aggregate result is in reference/label_only_check.json. A separate perturbation changes both labels and fields to check that the historical representation stays fixed. The next two fit the models. The remaining scripts regenerate the exhibits from the saved fits. Compare the resulting CSV files in results/strict_ieee/primary with reference/. The working output and reference directories are separate to allow fresh fitting. GPU and software differences can affect numerical reproducibility.
 
 The small reference tables also permit direct inspection without retraining. To regenerate the first two figures from the reference summaries, run:
 
@@ -57,3 +57,5 @@ The exploratory AUC table uses two families of contrasts. For the three XGBoost 
     python scripts/strict_ieee_auc.py --reference reference --output results/check
 
 Without arguments, the script computes CatBoost's bootstrap contrasts from the saved temporal scores, verifies day-by-day draw alignment against the archived tabular bootstrap AUC, and writes the outputs under results/strict_ieee/stages.
+
+The wide Gaussian control is an exploratory scale check. The earlier width search in reference/legacy_scale_width_search.csv targeted the median ratio of the original fields' mean absolute SHAP contributions (graph relative to tabular). Linear interpolation between the 512- and 768-column probes at the target of 0.627 gave 703 columns after rounding. The current analysis keeps this width fixed. In reference/scale.csv, share is the sum of absolute SHAP contributions for the added coordinates divided by the sum over all coordinates, pooling 5,000 explanations from each validation scheme. The wide control received 44.6% and the graph coordinates 39.5% in that single comparison. For the separate 20-refit analysis, use reference/context_by_seed.csv.
