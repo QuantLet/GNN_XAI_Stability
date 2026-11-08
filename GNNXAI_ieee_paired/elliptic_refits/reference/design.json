@@ -1,0 +1,68 @@
+{
+  "cut": 36,
+  "features": 165,
+  "hashes": {
+    "05_elliptic.py": "c8b77aca233ed5485e5c6ad4beb98d6c389f74d8bb444bc39594b8cb4c233902",
+    "config.py": "0452ce6f6bda59fbfe4191cfc59256db2095212be37531ebd78675aee2e0d13b",
+    "elliptic.py": "8ddbc4c485f69a99adcccbb59fe18574efa51c863f3c12fa486a251daa623315",
+    "elliptic_txs_classes.csv": "93e2e7b2405c735ba752bf6ba06b947561deddd1f5a8fc91e46f6a4c0e439493",
+    "elliptic_txs_edgelist.csv": "a35053ba68a98e4382cae2ba65b9d9e36b23b6439e02dff084971b1b72a5156e",
+    "elliptic_txs_features.csv": "fd7f83573443c9e302e371d3f110e3b6224160f5d1ed8a287757936127800ff0",
+    "models.py": "977da7da63c99a5e9d8fdc562a58f0b6fc4df63922a983e5f78a3290d89b33d8",
+    "run.py": "bd07c7f6117cb3bd71f187437a517e180fca37dc17fa5b244aaa3c2312ffc4e4",
+    "shap_engine.py": "a8659f450d88f3c354fcd80640d70675d779330b5aa3484ef17834d566e7d10e"
+  },
+  "history_to_future": 0,
+  "illicit": 4545,
+  "labeled": 46564,
+  "labeled_edges": 36624,
+  "primary": "graph minus Gaussian leading-field change rate",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220
+  ],
+  "splits": {
+    "random": {
+      "background": 100,
+      "explained": 5000,
+      "explained_illicit": 488,
+      "test": 13970,
+      "test_illicit": 1364,
+      "train": 32594
+    },
+    "temporal": {
+      "background": 100,
+      "explained": 5000,
+      "explained_illicit": 294,
+      "test": 15329,
+      "test_illicit": 901,
+      "train": 31235
+    }
+  },
+  "training_edges": 23900,
+  "unit": "delete one of twenty paired seed fits, fixed chronological explanation panel",
+  "versions": {
+    "numpy": "2.4.2",
+    "shap": "0.51.0",
+    "torch": "2.11.0",
+    "xgboost": "3.2.0"
+  }
+}

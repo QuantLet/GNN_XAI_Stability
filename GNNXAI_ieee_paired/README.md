@@ -74,3 +74,5 @@ From this Quantlet directory, with the original competition files in data/raw, r
 The public reference files contain per-fit metrics, numbers of reassigned links, agreement across updates, nine paired AUC contrasts, and the importance-weighted results for the original 20 pairs. The rolling AUC intervals use 12,000 paired resamples of seven-day circular blocks per window and Bonferroni adjustment across all nine contrasts, conditional on the fitted models. Raw competition files and individual predictions are obtained by downloading the original data under the Kaggle competition rules and running the code. To regenerate the printed temporal table directly from the public summaries:
 
     python -c "import sys,pandas as pd; sys.path.insert(0,'scripts'); from report_chronological import render; print(render(pd.read_csv('reference/rolling_fits.csv')),end='')"
+
+The [Elliptic refitting experiment](elliptic_refits/) provides the training code, matched seed-pair estimates and comparison with IEEE-CIS for Table 7.
